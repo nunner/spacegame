@@ -1,0 +1,19 @@
+[
+ {
+  "directory": "/home/nun/Programming/git/spacegame",
+  "arguments": [
+   "gcc",
+   "-I",
+   "include",
+   "-o",
+   "spacegame",
+   "-Wall",
+   "-Werror",
+   "-O3",
+   "src/main.c",
+   "src/map.c",
+   "-lncurses"
+  ],
+  "file": "src/map.c"
+ }
+]
