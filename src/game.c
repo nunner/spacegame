@@ -49,7 +49,7 @@ create_ship()
 	ship->health = 100;
 	ship->energy = 0;
 	ship->maxenergy = 15;
-	ship->crew = 50;
+	ship->crew = 60;
 
 	ship->status->machine_deck = true;
 	ship->status->phaser_deck = false;

@@ -23,3 +23,6 @@ state_attack(WINDOW *w);
 
 void
 print_health(WINDOW *w);
+
+void
+print_status(WINDOW *w, int y, int x, char *name, bool status);

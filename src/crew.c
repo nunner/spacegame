@@ -1,5 +1,6 @@
 #include "spacegame.h"
 #include "crew.h"
+#include "state.h"
 
 #include "stdlib.h"
 #include <string.h>
@@ -17,20 +18,22 @@ static WINDOW *phaserwin;
 static WINDOW *enginewin;
 
 void
-create_crewwindow(crewwindow_t *win)
+create_crewwindow(crewwindow_t win)
 {
-	mvwprintw(win->window, 0, (INIT_COLS-strlen(win->name))/2, win->name);
-	box(win->window, 0, 0);
-	wrefresh(win->window);
+	WINDOW *window = *win.window;
+	box(window, 0, 0);
+	mvwprintw(window, 0, (WIDTH-strlen(win.name))/2, win.name);
+	print_status(window, 2, 2, "Status", win.property);
+	wrefresh(window);
 }
 
 void
 crew()
 {
 	crewwindow_t windows[] = {
-		{"Machine deck", state->player->status->machine_deck, machinewin},
-		{"Phaser deck", state->player->status->phaser_deck, phaserwin},
-		{"Engine deck", state->player->status->engine_deck, enginewin}
+		{"Machine deck", state->player->status->machine_deck, &machinewin},
+		{"Phaser deck", state->player->status->phaser_deck, &phaserwin},
+		{"Engine deck", state->player->status->engine_deck, &enginewin}
 	};
 
 	crewwin = dupwin(mainwindow);
@@ -43,14 +46,13 @@ crew()
 	box(overview, 0, 0);
 	keypad(crewwin, true);
 
+	for(int i = 0; i < 3; i++)
+	{
+		create_crewwindow(windows[i]);
+	}
+
 	while(1) {
-
-		for(int i = 0; i < 3; i++) 	{
-			create_crewwindow(&windows[i]);
-		}
-
-		wrefresh(overview);
-
+	
 		int key = 0;
 		switch((key = wgetch(crewwin)))
 		{

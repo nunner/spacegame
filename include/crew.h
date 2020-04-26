@@ -7,5 +7,5 @@
 typedef struct {
 	char *name;
 	bool property;
-	WINDOW *window;
+	WINDOW **window;
 } crewwindow_t;
