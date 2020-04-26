@@ -1,7 +1,15 @@
 #pragma once
 
+#include <stdbool.h>
+#include <stdint.h>
+
 typedef struct {
-	int x, y;	
+	uint32_t crew;
+} ship;
+
+typedef struct {
+	int x, y;
+	bool visited;
 } location_t;
 
 typedef struct {
