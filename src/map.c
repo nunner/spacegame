@@ -1,4 +1,5 @@
 #include "spacegame.h"
+#include "ship.h"
 
 #include "stdlib.h"
 #include <string.h>
@@ -7,8 +8,7 @@
 #define STAR_CHAR 	'*'
 
 extern WINDOW *mainwindow;
-extern sector_t *current_sector;
-extern location_t *current_location;
+extern gamestate_t *state;
 
 static WINDOW *mapwin;
 
@@ -28,7 +28,7 @@ map()
 	int location_index = 0;
 	for(int i = 0; i < LOCATION_COUNT; i++)
 	{
-		if(current_sector->locations[i].x == current_location->x && current_sector->locations[i].y == current_location->y) {
+		if(state->current_sector->locations[i].x == state->current_location->x && state->current_sector->locations[i].y == state->current_location->y) {
 			pos = location_index = i;
 			break;
 		}
@@ -39,7 +39,7 @@ map()
 
 		for(int i = 0; i < LOCATION_COUNT; i++)
 		{
-			location_t location = current_sector->locations[i];
+			location_t location = state->current_sector->locations[i];
 			
 			if(i == pos) {
 				if(i == location_index) {
@@ -76,7 +76,10 @@ map()
 				break;
 			// Enter
 			case 10:
-				current_location = &current_sector->locations[pos];
+				if(pos != location_index) {
+					write_to_screen("SYSTEM: Switched to new Sector.\n");
+					state->current_location = &state->current_sector->locations[pos];
+				}
 				goto end;
 			// Esc
 			case 27:

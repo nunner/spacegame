@@ -10,11 +10,19 @@ typedef struct {
 } controls_t;
 
 typedef struct {
+	bool machine_deck;
+	bool phaser_deck;
+	bool engine_decks;
+	bool oxygen;
+} status_t;
+
+typedef struct {
 	uint32_t crew;
 	uint8_t health;
 	uint8_t energy;
 	uint8_t maxenergy;
 	controls_t *controls;
+	status_t *status;
 } ship_t;
 
 typedef struct {
@@ -25,3 +33,16 @@ typedef struct {
 typedef struct {
 	location_t locations[LOCATION_COUNT];
 } sector_t;
+
+typedef enum {
+	PEACE,
+	TRADE,
+	ATTACK
+} STATE;
+
+typedef struct {
+	location_t *current_location;
+	sector_t *current_sector;
+	ship_t *player;
+	STATE current_state;
+} gamestate_t;

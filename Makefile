@@ -4,7 +4,7 @@ LDFLAG=
 CFLAGS=-Wall -Werror -O3 -g
 CC=gcc
 
-SRC=$(wildcard src/*.c)
+SRC=$(shell find . -name "*.c")
 INCLUDE=include
 
 TARGET=spacegame
