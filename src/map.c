@@ -1,83 +1,91 @@
 #include "spacegame.h"
-#include "map.h"
 
 #include "stdlib.h"
+#include <string.h>
 
-#define PLANET_CHAR "o"
-#define STAR_CHAR 	"*"
+#define PLANET_CHAR 'o'
+#define STAR_CHAR 	'*'
 
 extern WINDOW *mainwindow;
+extern sector_t *current_sector;
+extern location_t *current_location;
 
-static int max_x, max_y;
 static WINDOW *mapwin;
-static WINDOW *textwin;
 
-static int index;
+static int pos;
 
 void
-fill_positions(sector_t *sector)
-{
-	for(int i = 0; i < LOCATION_COUNT; i++)
-	{
-		sector->locations[i].x = rand() % max_x;
-		sector->locations[i].y = rand() % max_y;
-		sector->locations[i].visited = true;
-	}
-}
-
-location_t
 map()
 {
 	mapwin = dupwin(mainwindow);
 	box(mapwin, 0, 0);
-	textwin = subwin(mapwin, INIT_LINES, 30, 0, INIT_COLS-30);
-	getmaxyx(mapwin, max_y, max_x);
+	keypad(mapwin, true);
 
-	index = 0;
-
-	sector_t *sect = (sector_t *) malloc(sizeof(sector_t));
-	fill_positions(sect);
+	pos = 0;
 
 	int direction = 0;
 
+	int location_index = 0;
+	for(int i = 0; i < LOCATION_COUNT; i++)
+	{
+		if(current_sector->locations[i].x == current_location->x && current_sector->locations[i].y == current_location->y) {
+			pos = location_index = i;
+			break;
+		}
+	}
+
 	while(1) {
+		mvwprintw(mapwin, 0, (INIT_COLS-strlen("Sector map"))/2, "Sector map");
+
 		for(int i = 0; i < LOCATION_COUNT; i++)
 		{
-			location_t location = sect->locations[i];
-			if(index == i) {
-				wattron(mapwin, C_SELECTED);
-				mvwprintw(mapwin, location.y, location.x, PLANET_CHAR);
-				wattroff(mapwin, C_SELECTED);
+			location_t location = current_sector->locations[i];
+			
+			if(i == pos) {
+				if(i == location_index) {
+					wattron(mapwin, C_A_CURRENT);
+					mvwprintw(mapwin, location.y, location.x-1, ">%c<", PLANET_CHAR);
+					wattroff(mapwin, C_A_CURRENT);
+				} else  {
+					wattron(mapwin, C_A_SELECTED);
+					mvwprintw(mapwin, location.y, location.x-1, "(%c)", PLANET_CHAR);
+					wattroff(mapwin, C_A_SELECTED);
+				}
+			} else if(i == location_index){
+				mvwprintw(mapwin, location.y, location.x-1, ">%c<", PLANET_CHAR);
 			} else if(location.visited) {
-				wattron(mapwin, C_VISITED);
-				mvwprintw(mapwin, location.y, location.x, PLANET_CHAR);
-				wattroff(mapwin, C_VISITED);
+				wattron(mapwin, C_A_VISITED);
+				mvwprintw(mapwin, location.y, location.x-1, " %c ", PLANET_CHAR);
+				wattroff(mapwin, C_A_VISITED);
 			}
-			else mvwprintw(mapwin, location.y, location.x, PLANET_CHAR);
+			else mvwprintw(mapwin, location.y, location.x-1, " %c ", PLANET_CHAR);
 		}
 
-		wrefresh(mapwin);
 
 		switch((direction = wgetch(mapwin)))
 		{
 			// Left
-			case 68:
+			case KEY_LEFT:
 			case 'h':
-				if(index > 0) index--;
+				if(pos > 0) pos--;
 				break;
 			// Right
-			case 67:
+			case KEY_RIGHT:
 			case 'l':
-				if(index < LOCATION_COUNT - 1) index++;
+				if(pos < LOCATION_COUNT - 1) pos++;
 				break;
 			// Enter
 			case 10:
+				current_location = &current_sector->locations[pos];
+				goto end;
+			// Esc
+			case 27:
 				goto end;
 		}
+
 	}
 
 end:
-	delwin(textwin);
 	delwin(mapwin);
-	return sect->locations[index];
+	return;
 }

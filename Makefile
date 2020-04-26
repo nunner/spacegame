@@ -1,7 +1,7 @@
 LDLIBS=-lncurses
 LDFLAG=
 
-CFLAGS=-Wall -Werror -O3
+CFLAGS=-Wall -Werror -O3 -g
 CC=gcc
 
 SRC=$(wildcard src/*.c)
