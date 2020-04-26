@@ -3,8 +3,8 @@
 
 extern gamestate_t *state;
 
-void
+inline void
 print_health(WINDOW *w)
 {
-	mvwprintw(w, 2, 2, "Health: %d", state->player->health);
+	mvwprintw(w, 2, 2, "Health: \t\t%d", state->player->health);
 }

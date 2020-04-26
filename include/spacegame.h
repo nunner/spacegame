@@ -24,7 +24,7 @@ void
 start_game();
 
 void
-enter_sector(sector_t *sector);
+map();
 
 void
-map();
+crew();

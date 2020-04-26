@@ -77,7 +77,7 @@ map()
 			// Enter
 			case 10:
 				if(pos != location_index) {
-					write_to_screen("SYSTEM: Switched to new Sector.\n");
+					write_to_screen("Switched to new Sector.\n", SYSTEM);
 					state->current_location = &state->current_sector->locations[pos];
 				}
 				goto end;

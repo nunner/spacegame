@@ -12,7 +12,7 @@ typedef struct {
 typedef struct {
 	bool machine_deck;
 	bool phaser_deck;
-	bool engine_decks;
+	bool engine_deck;
 	bool oxygen;
 } status_t;
 
@@ -46,3 +46,11 @@ typedef struct {
 	ship_t *player;
 	STATE current_state;
 } gamestate_t;
+
+typedef enum {
+	SYSTEM,
+	STATUS,
+	TRADER,
+	ATTACKER,
+	UNKNOWN	
+} MESSAGE;

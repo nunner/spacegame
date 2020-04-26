@@ -36,10 +36,7 @@ start_game()
 
 	state->current_state = PEACE;
 
-	while(state->player->health != 0)
-	{
-		show_gui();
-	}
+	show_gui();
 }
 
 ship_t *
@@ -52,10 +49,11 @@ create_ship()
 	ship->health = 100;
 	ship->energy = 0;
 	ship->maxenergy = 15;
+	ship->crew = 50;
 
 	ship->status->machine_deck = true;
 	ship->status->phaser_deck = false;
-	ship->status->engine_decks = true;
+	ship->status->engine_deck = true;
 	ship->status->oxygen = true;
 
 	return ship;

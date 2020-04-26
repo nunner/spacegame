@@ -80,7 +80,7 @@ draw_controls()
 	// Print status stuff
 	print_status(controlwin, 20, 3, "Machine deck", state->player->status->machine_deck);
 	print_status(controlwin, 22, 3, "Phaser deck", state->player->status->phaser_deck);
-	print_status(controlwin, 24, 3, "Engine deck", state->player->status->engine_decks);
+	print_status(controlwin, 24, 3, "Engine deck", state->player->status->engine_deck);
 
 	wrefresh(controlwin);
 }
@@ -124,11 +124,38 @@ init()
 }
 
 void
-write_to_screen(char *s)
+write_to_screen(char *s, MESSAGE m)
 {
-	// TODO: Status colors based on who sends the message.
-	wprintw(text, s);
+	char *prefix;
+	switch(m)
+	{
+		default:
+		case SYSTEM:
+			wcolor_set(text, COLOR_GREEN, 0);
+			prefix = "[SYSTEM]";
+			break;
+		case STATUS:
+			wcolor_set(text, COLOR_BLUE, 0);
+			prefix = "[STATUS]";
+			break;
+		case TRADER:
+			wcolor_set(text, COLOR_CYAN, 0);
+			prefix = "[TRADER]";
+			break;
+		case ATTACKER:
+			wcolor_set(text, COLOR_RED, 0);
+			prefix = "[ATTACK]";
+			break;
+		case UNKNOWN:
+			wcolor_set(text, COLOR_YELLOW, 0);
+			prefix = "[UNKNOWN SHIP]";
+			break;
+	}
+
+	wprintw(text, "%s %s", prefix, s);
 	wrefresh(text);
+
+	wcolor_set(screenwin, COLOR_BLACK, 0);
 }
 
 void
@@ -149,7 +176,7 @@ show_gui()
 
 	int key = 0;
 
-	while(1)
+	while(state->player->health != 0)
 	{
 		draw_controls();	
 		draw_screen();
@@ -160,6 +187,11 @@ show_gui()
 			case 'M':
 			case 'm':
 				map();
+				init();
+				break;
+			case 'C':
+			case 'c':
+				crew();
 				init();
 				break;
 			case '1':
