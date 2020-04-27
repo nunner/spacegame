@@ -33,14 +33,28 @@ void
 draw_machine()
 {
 	create_crewwindow(machinewin, "Machine", state->player->status->machine_deck, state->player->controls->shield);
+}
+
+void
+draw_phaser()
+{
+	create_crewwindow(phaserwin, "Phaser", state->player->status->phaser_deck, state->player->controls->phasers);
+}
+
+void
+draw_engine()
+{
+	create_crewwindow(enginewin, "Engine", state->player->status->engine_deck, state->player->controls->booster);
 
 	if(current_destination != 0) {
 		int distance = abs(state->current_location->index - current_destination->index);
 
-		mvwprintw(machinewin, 8, 2, "[Destination set]");
-		mvwprintw(machinewin, 10, 2, "Distance: %d", distance);
+		wcolor_set(enginewin, COLOR_YELLOW, 0);
 
-		wcolor_set(machinewin, COLOR_BLACK, 0);
+		mvwprintw(enginewin, 8, 2, "[Destination set]");
+		mvwprintw(enginewin, 10, 2, "Distance: %d", distance);
+
+		wcolor_set(enginewin, COLOR_BLACK, 0);
 	}
 }
 
@@ -59,6 +73,8 @@ crew()
 
 	while(1) {
 		draw_machine();	
+		draw_phaser();
+		draw_engine();
 
 		int key = 0;
 		switch((key = wgetch(crewwin)))
