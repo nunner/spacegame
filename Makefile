@@ -1,7 +1,7 @@
 LDLIBS=-lncurses
 LDFLAG=
 
-CFLAGS=-Wall -Werror -O3 -g
+CFLAGS=-Wall -Werror -O3 -g -fsanitize=undefined -fsanitize=address
 CC=gcc
 
 SRC=$(shell find . -name "*.c")

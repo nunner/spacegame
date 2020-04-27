@@ -120,7 +120,7 @@ write_to_screen(char *s, MESSAGE m)
 		default:
 		case SYSTEM:
 			wcolor_set(text, COLOR_GREEN, 0);
-			prefix = "[SYSTEM]";
+			prefix = "[SHIP COMPUTER]";
 			break;
 		case STATUS:
 			wcolor_set(text, COLOR_BLUE, 0);
@@ -183,7 +183,7 @@ show_gui()
 				init();
 				break;
 			case '1':
-				if(state->player->controls->shield != 0) {
+				if(state->player->controls->shield > 0) {
 					state->player->controls->shield--;
 					state->player->energy--;
 				}
@@ -195,7 +195,7 @@ show_gui()
 				}
 				break;
 			case '3':
-				if(state->player->controls->phasers != 0) {
+				if(state->player->controls->phasers > 0) {
 					state->player->controls->phasers--;
 					state->player->energy--;
 				}
@@ -207,7 +207,7 @@ show_gui()
 				}
 				break;
 			case '5':
-				if(state->player->controls->booster != 0) {
+				if(state->player->controls->booster > 0) {
 					state->player->controls->booster--;
 					state->player->energy--;
 				}

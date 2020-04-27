@@ -10,6 +10,8 @@
 extern WINDOW *mainwindow;
 extern gamestate_t *state;
 
+extern location_t *current_destination;
+
 static WINDOW *crewwin;
 
 static WINDOW *overview;
@@ -18,24 +20,33 @@ static WINDOW *phaserwin;
 static WINDOW *enginewin;
 
 void
-create_crewwindow(crewwindow_t win)
+create_crewwindow(WINDOW *w, char *name, bool property, int energy)
 {
-	WINDOW *window = *win.window;
-	box(window, 0, 0);
-	mvwprintw(window, 0, (WIDTH-strlen(win.name))/2, win.name);
-	print_status(window, 2, 2, "Status", win.property);
-	wrefresh(window);
+	box(w, 0, 0);
+	mvwprintw(w, 0, (WIDTH-strlen(name))/2, name);
+	print_energy(w, 2, 2, energy);
+	print_status(w, 4, 2, "Status", property);
+	wrefresh(w);
+}
+
+void
+draw_machine()
+{
+	create_crewwindow(machinewin, "Machine", state->player->status->machine_deck, state->player->controls->shield);
+
+	if(current_destination != 0) {
+		int distance = abs(state->current_location->index - current_destination->index);
+
+		mvwprintw(machinewin, 8, 2, "[Destination set]");
+		mvwprintw(machinewin, 10, 2, "Distance: %d", distance);
+
+		wcolor_set(machinewin, COLOR_BLACK, 0);
+	}
 }
 
 void
 crew()
 {
-	crewwindow_t windows[] = {
-		{"Machine deck", state->player->status->machine_deck, &machinewin},
-		{"Phaser deck", state->player->status->phaser_deck, &phaserwin},
-		{"Engine deck", state->player->status->engine_deck, &enginewin}
-	};
-
 	crewwin = dupwin(mainwindow);
 
 	overview = subwin(crewwin,   INIT_LINES, WIDTH, 0, 0);
@@ -46,13 +57,9 @@ crew()
 	box(overview, 0, 0);
 	keypad(crewwin, true);
 
-	for(int i = 0; i < 3; i++)
-	{
-		create_crewwindow(windows[i]);
-	}
-
 	while(1) {
-	
+		draw_machine();	
+
 		int key = 0;
 		switch((key = wgetch(crewwin)))
 		{

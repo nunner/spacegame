@@ -5,7 +5,7 @@
 #define INIT_LINES 30
 #define INIT_COLS 140
 
-#define LOCATION_COUNT 10
+#define LOCATION_COUNT 22
 
 #define C(x)			COLOR_PAIR(x)
 #define C_A_SELECTED	C(1)

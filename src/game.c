@@ -51,10 +51,13 @@ create_ship()
 	ship->maxenergy = 15;
 	ship->crew = 60;
 
+	ship->controls->shield = 0;
+	ship->controls->phasers = 0;
+	ship->controls->booster = 0;
+
 	ship->status->machine_deck = true;
 	ship->status->phaser_deck = false;
 	ship->status->engine_deck = true;
-	ship->status->oxygen = true;
 
 	return ship;
 }
@@ -64,10 +67,15 @@ create_sector()
 {
 	sector_t *sector = malloc(sizeof(sector_t));
 
+	int x_range = (max_x - 2) / LOCATION_COUNT;
+	int y_range = max_y - 4;
+
 	for(int i = 0; i < LOCATION_COUNT; i++)
 	{
-		sector->locations[i].x = rand() % max_x;
-		sector->locations[i].y = rand() % max_y;
+		sector->locations[i].x = rand() % x_range + (x_range * i) + 1;
+		sector->locations[i].y = rand() % y_range + 2;
+
+		sector->locations[i].index = i;
 		sector->locations[i].visited = true;
 	}
 
