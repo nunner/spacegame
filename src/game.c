@@ -48,7 +48,7 @@ create_ship()
 
 	ship->health = 100;
 	ship->energy = 0;
-	ship->maxenergy = 15;
+	ship->maxenergy = 45;
 	ship->crew = 60;
 
 	ship->controls->shield = 0;
@@ -56,7 +56,7 @@ create_ship()
 	ship->controls->booster = 0;
 
 	ship->status->machine_deck = true;
-	ship->status->phaser_deck = false;
+	ship->status->phaser_deck = true;
 	ship->status->engine_deck = true;
 
 	return ship;

@@ -25,10 +25,10 @@ print_control_bar(WINDOW *w, int value)
 {
 	for(int i = 0; i < 15; i++)
 	{
-		if(i >= value) wcolor_set(w, C_TRANS, 0);
-		else if(i == 0) wcolor_set(w, C_RED, 0);
-		else if(i == 5) wcolor_set(w, C_YELLOW, 0);
-		else if(i == 10) wcolor_set(w, C_GREEN, 0);
+		if(i >= value) wcolor_set(w, C_BAR_TRANS, 0);
+		else if(i == 0) wcolor_set(w, C_BAR_RED, 0);
+		else if(i == 5) wcolor_set(w, C_BAR_YELLOW, 0);
+		else if(i == 10) wcolor_set(w, C_BAR_GREEN, 0);
 
 		mvwprintw(w, 1, 1+i*2, "  ");
 	}
@@ -119,7 +119,7 @@ write_to_screen(char *s, MESSAGE m)
 	{
 		default:
 		case SYSTEM:
-			wcolor_set(text, COLOR_GREEN, 0);
+			wcolor_set(text, C_GREEN, 0);
 			prefix = "[SHIP COMPUTER]";
 			break;
 		case STATUS:
@@ -131,11 +131,11 @@ write_to_screen(char *s, MESSAGE m)
 			prefix = "[TRADER]";
 			break;
 		case ATTACKER:
-			wcolor_set(text, COLOR_RED, 0);
+			wcolor_set(text, C_RED, 0);
 			prefix = "[ATTACK]";
 			break;
 		case UNKNOWN:
-			wcolor_set(text, COLOR_YELLOW, 0);
+			wcolor_set(text, C_YELLOW, 0);
 			prefix = "[UNKNOWN SHIP]";
 			break;
 	}

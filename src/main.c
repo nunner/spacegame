@@ -16,13 +16,17 @@ main(void)
 	curs_set(FALSE);
 
 	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_MAGENTA, COLOR_BLACK);
-	init_pair(4, COLOR_RED, COLOR_RED);
-	init_pair(5, COLOR_YELLOW, COLOR_YELLOW);
-	init_pair(6, COLOR_GREEN, COLOR_GREEN);
-	init_pair(7, COLOR_BLACK, COLOR_BLACK);
+	init_pair(C_BAR_RED, COLOR_RED, COLOR_RED);
+	init_pair(C_BAR_YELLOW, COLOR_YELLOW, COLOR_YELLOW);
+	init_pair(C_BAR_GREEN, COLOR_GREEN, COLOR_GREEN);
+	init_pair(C_BAR_TRANS, COLOR_BLACK, COLOR_BLACK);
+
+	init_pair(C_RED, COLOR_RED, COLOR_BLACK);
+	init_pair(C_YELLOW, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(C_GREEN, COLOR_GREEN, COLOR_BLACK);
+	init_pair(C_CYAN, COLOR_CYAN, COLOR_BLACK);
+	init_pair(C_BLUE, COLOR_BLUE, COLOR_BLACK);
+	init_pair(C_DEFAULT, COLOR_WHITE, COLOR_BLACK);
 
 	mainwindow = newwin(INIT_LINES, INIT_COLS, 0, 0);
 

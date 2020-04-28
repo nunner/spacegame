@@ -2,7 +2,7 @@
 #include "crew.h"
 #include "state.h"
 
-#include "stdlib.h"
+#include <stdlib.h>
 #include <string.h>
 
 #define WIDTH INIT_COLS/4
@@ -49,12 +49,20 @@ draw_engine()
 	if(current_destination != 0) {
 		int distance = abs(state->current_location->index - current_destination->index);
 
-		wcolor_set(enginewin, COLOR_YELLOW, 0);
+		wcolor_set(enginewin, C_CYAN, 0);
 
 		mvwprintw(enginewin, 8, 2, "[Destination set]");
 		mvwprintw(enginewin, 10, 2, "Distance: %d", distance);
 
-		wcolor_set(enginewin, COLOR_BLACK, 0);
+		if(state->player->controls->booster >= distance) {
+			wcolor_set(enginewin, C_GREEN, 0);
+			mvwprintw(enginewin, 12, 2, "Sufficient energy supplied");
+		} else {
+			wcolor_set(enginewin, C_RED, 0);
+			mvwprintw(enginewin, 12, 2, "Insufficient energy supplied");
+		}
+
+		wcolor_set(enginewin, C_DEFAULT, 0);
 	}
 }
 
@@ -71,16 +79,16 @@ crew()
 	box(overview, 0, 0);
 	keypad(crewwin, true);
 
-	while(1) {
-		draw_machine();	
-		draw_phaser();
-		draw_engine();
+	draw_machine();	
+	draw_phaser();
+	draw_engine();
 
+	while(1) {
 		int key = 0;
 		switch((key = wgetch(crewwin)))
 		{
 			// Escape
-			case 27:
+			case ' ':
 				goto end;
 		}
 

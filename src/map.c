@@ -36,22 +36,21 @@ map()
 			
 			if(i == pos) {
 				if(i == state->current_location->index) {
-					wattron(mapwin, C_A_CURRENT);
+					wcolor_set(mapwin, C_CYAN, 0);
 					mvwprintw(mapwin, location.y, location.x-1, ">%c<", PLANET_CHAR);
-					wattroff(mapwin, C_A_CURRENT);
 				} else  {
-					wattron(mapwin, C_A_SELECTED);
+					wcolor_set(mapwin, C_YELLOW, 0);
 					mvwprintw(mapwin, location.y, location.x-1, "(%c)", PLANET_CHAR);
-					wattroff(mapwin, C_A_SELECTED);
 				}
 			} else if(i == state->current_location->index){
+				wcolor_set(mapwin, C_BLUE, 0);
 				mvwprintw(mapwin, location.y, location.x-1, ">%c<", PLANET_CHAR);
 			} else if(location.visited) {
-				wattron(mapwin, C_A_VISITED);
+				wcolor_set(mapwin, C_GREEN, 0);
 				mvwprintw(mapwin, location.y, location.x-1, " %c ", PLANET_CHAR);
-				wattroff(mapwin, C_A_VISITED);
 			}
 			else mvwprintw(mapwin, location.y, location.x-1, " %c ", PLANET_CHAR);
+			wcolor_set(mapwin, C_DEFAULT, 0);
 		}
 
 
@@ -75,7 +74,7 @@ map()
 				}
 				goto end;
 			// Esc
-			case 27:
+			case ' ':
 				goto end;
 		}
 

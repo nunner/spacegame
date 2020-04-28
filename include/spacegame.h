@@ -7,15 +7,17 @@
 
 #define LOCATION_COUNT 22
 
-#define C(x)			COLOR_PAIR(x)
-#define C_A_SELECTED	C(1)
-#define C_A_VISITED		C(2)
-#define C_A_CURRENT		C(3)
-#define C_RED			4
-#define C_YELLOW 		5	
-#define C_GREEN			6
-#define C_TRANS 		7
-#define C_DEFAULT		8
+#define C_BAR_RED 		1
+#define C_BAR_YELLOW 	2
+#define C_BAR_GREEN		3
+#define C_BAR_TRANS 	4
+
+#define C_RED			5
+#define C_YELLOW		6	
+#define C_GREEN		 	7
+#define C_CYAN			8
+#define C_BLUE			9
+#define C_DEFAULT 		10
 
 #include <ncurses.h>
 #include "types.h"
