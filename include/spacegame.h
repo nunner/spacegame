@@ -19,6 +19,9 @@
 #define C_BLUE			9
 #define C_DEFAULT 		10
 
+#define C_SELECTED		C_DEFAULT + 1
+#define C_DISABLED		C_SELECTED + 1
+
 #include <ncurses.h>
 #include "types.h"
 

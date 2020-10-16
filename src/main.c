@@ -28,6 +28,9 @@ main(void)
 	init_pair(C_BLUE, COLOR_BLUE, COLOR_BLACK);
 	init_pair(C_DEFAULT, COLOR_WHITE, COLOR_BLACK);
 
+	init_pair(C_SELECTED, COLOR_BLACK, COLOR_WHITE);
+	init_pair(C_DISABLED, COLOR_RED, COLOR_BLACK);
+
 	mainwindow = newwin(INIT_LINES, INIT_COLS, 0, 0);
 
 	start_game();

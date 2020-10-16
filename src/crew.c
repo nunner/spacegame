@@ -1,6 +1,7 @@
 #include "spacegame.h"
 #include "crew.h"
 #include "state.h"
+#include "menu.h"
 
 #include <stdlib.h>
 #include <string.h>
@@ -18,6 +19,8 @@ static WINDOW *overview;
 static WINDOW *machinewin;
 static WINDOW *phaserwin;
 static WINDOW *enginewin;
+
+static MENU *menu;
 
 void
 create_crewwindow(WINDOW *w, char *name, bool property, int energy)
@@ -39,12 +42,16 @@ void
 draw_phaser()
 {
 	create_crewwindow(phaserwin, "Phaser", state->player->status->phaser_deck, state->player->controls->phasers);
+
+	change_state(menu, PHASER, false);
 }
 
 void
 draw_engine()
 {
 	create_crewwindow(enginewin, "Engine", state->player->status->engine_deck, state->player->controls->booster);
+
+	change_state(menu, BOOSTERS, false);
 
 	if(current_destination != 0) {
 		int distance = abs(state->current_location->index - current_destination->index);
@@ -57,6 +64,7 @@ draw_engine()
 		if(state->player->controls->booster >= distance) {
 			wcolor_set(enginewin, C_GREEN, 0);
 			mvwprintw(enginewin, 12, 2, "Sufficient energy supplied");
+			change_state(menu, BOOSTERS, true);
 		} else {
 			wcolor_set(enginewin, C_RED, 0);
 			mvwprintw(enginewin, 12, 2, "Insufficient energy supplied");
@@ -79,6 +87,21 @@ crew()
 	box(overview, 0, 0);
 	keypad(crewwin, true);
 
+	char *options[] = {
+		"Fire phasers", PHASER,
+		"Activate boosters", BOOSTERS
+	};
+
+	int len = sizeof(options)/sizeof(options[0])/2;
+	ITEM *items = malloc(len * sizeof(ITEM) );
+
+	for(size_t i = 0; i < 2*len; i += 2) {
+		items[i/2] = create_item(options[i], options[i + 1], true);	
+	}
+	
+	menu = create_menu(items, len);
+	post_menu(menu, overview, 2, 2);
+
 	draw_machine();	
 	draw_phaser();
 	draw_engine();
@@ -87,6 +110,16 @@ crew()
 		int key = 0;
 		switch((key = wgetch(crewwin)))
 		{
+			case KEY_UP:
+				menu_driver(menu, MENU_UP);
+				break;
+			case KEY_DOWN:
+				menu_driver(menu, MENU_DOWN);
+				break;
+			// Return
+			case 10:
+				menu_driver(menu, MENU_ENTER);
+				goto end;
 			// Escape
 			case ' ':
 				goto end;
