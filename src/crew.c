@@ -118,7 +118,7 @@ crew()
 				break;
 			// Return
 			case 10:
-				menu_driver(menu, MENU_ENTER);
+				menu_driver(menu, MENU_SELECT);
 				goto end;
 			// Escape
 			case ' ':

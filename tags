@@ -1,0 +1,189 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+$(TARGET)	Makefile	/^$(TARGET): $(SRC)$/;"	t
+0	compile_commands.json	/^   "gcc",$/;"	s	array:0.arguments
+0	compile_commands.json	/^ {$/;"	o
+1	compile_commands.json	/^   "-I",$/;"	s	array:0.arguments
+10	compile_commands.json	/^   "-lncurses"$/;"	s	array:0.arguments
+2	compile_commands.json	/^   "include",$/;"	s	array:0.arguments
+3	compile_commands.json	/^   "-o",$/;"	s	array:0.arguments
+4	compile_commands.json	/^   "spacegame",$/;"	s	array:0.arguments
+5	compile_commands.json	/^   "-Wall",$/;"	s	array:0.arguments
+6	compile_commands.json	/^   "-Werror",$/;"	s	array:0.arguments
+7	compile_commands.json	/^   "-O3",$/;"	s	array:0.arguments
+8	compile_commands.json	/^   "src\/main.c",$/;"	s	array:0.arguments
+9	compile_commands.json	/^   "src\/map.c",$/;"	s	array:0.arguments
+ATTACK	include/types.h	/^	ATTACK$/;"	e	enum:__anon3fec03a30603
+ATTACKER	include/types.h	/^	ATTACKER,$/;"	e	enum:__anon3fec03a30803
+BOOSTERS	include/crew.h	/^#define BOOSTERS /;"	d
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-Wall -Werror -O3 -g -fsanitize=undefined -fsanitize=address$/;"	m
+CONTROL_WIDTH	include/state.h	/^#define CONTROL_WIDTH /;"	d
+C_BAR_GREEN	include/spacegame.h	/^#define C_BAR_GREEN	/;"	d
+C_BAR_RED	include/spacegame.h	/^#define C_BAR_RED /;"	d
+C_BAR_TRANS	include/spacegame.h	/^#define C_BAR_TRANS /;"	d
+C_BAR_YELLOW	include/spacegame.h	/^#define C_BAR_YELLOW /;"	d
+C_BLUE	include/spacegame.h	/^#define C_BLUE	/;"	d
+C_CYAN	include/spacegame.h	/^#define C_CYAN	/;"	d
+C_DEFAULT	include/spacegame.h	/^#define C_DEFAULT /;"	d
+C_DISABLED	include/spacegame.h	/^#define C_DISABLED	/;"	d
+C_GREEN	include/spacegame.h	/^#define C_GREEN	/;"	d
+C_RED	include/spacegame.h	/^#define C_RED	/;"	d
+C_SELECTED	include/spacegame.h	/^#define C_SELECTED	/;"	d
+C_YELLOW	include/spacegame.h	/^#define C_YELLOW	/;"	d
+DEBUG	include/spacegame.h	/^#define DEBUG$/;"	d
+INCLUDE	Makefile	/^INCLUDE=include$/;"	m
+INIT_COLS	include/spacegame.h	/^#define INIT_COLS /;"	d
+INIT_LINES	include/spacegame.h	/^#define INIT_LINES /;"	d
+ITEM	include/menu.h	/^} ITEM;$/;"	t	typeref:struct:__anon5ccc24030108
+LDFLAG	Makefile	/^LDFLAG=$/;"	m
+LDLIBS	Makefile	/^LDLIBS=-lncurses$/;"	m
+LOCATION_COUNT	include/spacegame.h	/^#define LOCATION_COUNT /;"	d
+MENU	include/menu.h	/^} MENU;$/;"	t	typeref:struct:__anon5ccc24030208
+MENU_ACTION	include/menu.h	/^} MENU_ACTION;$/;"	t	typeref:enum:__anon5ccc24030303
+MENU_DOWN	include/menu.h	/^	MENU_DOWN,$/;"	e	enum:__anon5ccc24030303
+MENU_SELECT	include/menu.h	/^	MENU_SELECT$/;"	e	enum:__anon5ccc24030303
+MENU_UP	include/menu.h	/^	MENU_UP,$/;"	e	enum:__anon5ccc24030303
+MESSAGE	include/types.h	/^} MESSAGE;$/;"	t	typeref:enum:__anon3fec03a30803
+PEACE	include/types.h	/^	PEACE,$/;"	e	enum:__anon3fec03a30603
+PHASER	include/crew.h	/^#define PHASER /;"	d
+PLANET_CHAR	src/map.c	/^#define PLANET_CHAR /;"	d	file:
+SRC	Makefile	/^SRC=$(shell find . -name "*.c")$/;"	m
+STAR_CHAR	src/map.c	/^#define STAR_CHAR /;"	d	file:
+STATE	include/types.h	/^} STATE;$/;"	t	typeref:enum:__anon3fec03a30603
+STATUS	include/types.h	/^	STATUS,$/;"	e	enum:__anon3fec03a30803
+SYSTEM	include/types.h	/^	SYSTEM,$/;"	e	enum:__anon3fec03a30803
+TARGET	Makefile	/^TARGET=spacegame$/;"	m
+TRADE	include/types.h	/^	TRADE,$/;"	e	enum:__anon3fec03a30603
+TRADER	include/types.h	/^	TRADER,$/;"	e	enum:__anon3fec03a30803
+UNKNOWN	include/types.h	/^	UNKNOWN	$/;"	e	enum:__anon3fec03a30803
+WIDTH	src/crew.c	/^#define WIDTH /;"	d	file:
+__anon3fec03a30108	include/types.h	/^typedef struct {$/;"	s
+__anon3fec03a30208	include/types.h	/^typedef struct {$/;"	s
+__anon3fec03a30308	include/types.h	/^typedef struct {$/;"	s
+__anon3fec03a30408	include/types.h	/^typedef struct {$/;"	s
+__anon3fec03a30508	include/types.h	/^typedef struct {$/;"	s
+__anon3fec03a30603	include/types.h	/^typedef enum {$/;"	g
+__anon3fec03a30708	include/types.h	/^typedef struct {$/;"	s
+__anon3fec03a30803	include/types.h	/^typedef enum {$/;"	g
+__anon5ccc24030108	include/menu.h	/^typedef struct {$/;"	s
+__anon5ccc24030208	include/menu.h	/^typedef struct {$/;"	s
+__anon5ccc24030303	include/menu.h	/^typedef enum {$/;"	g
+__anone6408a4f0108	include/state.h	/^typedef struct {$/;"	s
+all	Makefile	/^all: clean $(TARGET) run$/;"	t
+arguments	compile_commands.json	/^  "arguments": [$/;"	a	object:0
+booster	include/types.h	/^	uint16_t booster;$/;"	m	struct:__anon3fec03a30108	typeref:typename:uint16_t
+boosterwin	src/ship.c	/^static WINDOW *boosterwin;$/;"	v	typeref:typename:WINDOW *	file:
+change_state	src/menu.c	/^change_state(MENU *m, char *code, bool value)$/;"	f	typeref:typename:void
+clean	Makefile	/^clean:$/;"	t
+code	include/menu.h	/^	char *code;$/;"	m	struct:__anon5ccc24030108	typeref:typename:char *
+controls	include/types.h	/^	controls_t *controls;$/;"	m	struct:__anon3fec03a30308	typeref:typename:controls_t *
+controls_t	include/types.h	/^} controls_t;$/;"	t	typeref:struct:__anon3fec03a30108
+controlwin	src/ship.c	/^static WINDOW *controlwin;$/;"	v	typeref:typename:WINDOW *	file:
+create_crewwindow	src/crew.c	/^create_crewwindow(WINDOW *w, char *name, bool property, int energy)$/;"	f	typeref:typename:void
+create_item	src/menu.c	/^create_item(char *name, char *code, bool enabled)$/;"	f	typeref:typename:ITEM
+create_menu	src/menu.c	/^create_menu(ITEM *items, size_t count)$/;"	f	typeref:typename:MENU *
+create_sector	src/game.c	/^create_sector()$/;"	f	typeref:typename:sector_t *
+create_ship	src/game.c	/^create_ship()$/;"	f	typeref:typename:ship_t *
+crew	include/types.h	/^	uint32_t crew;$/;"	m	struct:__anon3fec03a30308	typeref:typename:uint32_t
+crew	src/crew.c	/^crew()$/;"	f	typeref:typename:void
+crewwin	src/crew.c	/^static WINDOW *crewwin;$/;"	v	typeref:typename:WINDOW *	file:
+current_destination	src/map.c	/^location_t *current_destination;$/;"	v	typeref:typename:location_t *
+current_location	include/types.h	/^	location_t *current_location;$/;"	m	struct:__anon3fec03a30708	typeref:typename:location_t *
+current_sector	include/types.h	/^	sector_t *current_sector;$/;"	m	struct:__anon3fec03a30708	typeref:typename:sector_t *
+current_state	include/types.h	/^	STATE current_state;$/;"	m	struct:__anon3fec03a30708	typeref:typename:STATE
+debug	Makefile	/^debug: $(TARGET)$/;"	t
+directory	compile_commands.json	/^  "directory": "\/home\/nun\/Programming\/git\/spacegame",$/;"	s	object:0
+down	include/state.h	/^	void (*down)();$/;"	m	struct:__anone6408a4f0108	typeref:typename:void (*)()
+draw	src/menu.c	/^draw(MENU *m)$/;"	f	typeref:typename:void
+draw_controls	src/ship.c	/^draw_controls()$/;"	f	typeref:typename:void
+draw_engine	src/crew.c	/^draw_engine()$/;"	f	typeref:typename:void
+draw_machine	src/crew.c	/^draw_machine()$/;"	f	typeref:typename:void
+draw_phaser	src/crew.c	/^draw_phaser()$/;"	f	typeref:typename:void
+draw_screen	src/ship.c	/^draw_screen()$/;"	f	typeref:typename:void
+draw_status	src/ship.c	/^draw_status()$/;"	f	typeref:typename:void
+enabled	include/menu.h	/^	bool enabled;$/;"	m	struct:__anon5ccc24030108	typeref:typename:bool
+energy	include/types.h	/^	uint8_t energy;$/;"	m	struct:__anon3fec03a30308	typeref:typename:uint8_t
+engine_deck	include/types.h	/^	bool engine_deck;$/;"	m	struct:__anon3fec03a30208	typeref:typename:bool
+enginewin	src/crew.c	/^static WINDOW *enginewin;$/;"	v	typeref:typename:WINDOW *	file:
+enter	include/state.h	/^	void (*enter)();$/;"	m	struct:__anone6408a4f0108	typeref:typename:void (*)()
+file	compile_commands.json	/^  "file": "src\/map.c"$/;"	s	object:0
+find_lower	src/menu.c	/^find_lower(MENU *m) {$/;"	f	typeref:typename:uint32_t
+find_upper	src/menu.c	/^uint32_t find_upper(MENU *m) {$/;"	f	typeref:typename:uint32_t
+gamestate_t	include/types.h	/^} gamestate_t;$/;"	t	typeref:struct:__anon3fec03a30708
+guiwin	src/ship.c	/^static WINDOW *guiwin;$/;"	v	typeref:typename:WINDOW *	file:
+health	include/types.h	/^	uint8_t health;$/;"	m	struct:__anon3fec03a30308	typeref:typename:uint8_t
+index	include/menu.h	/^	int index;$/;"	m	struct:__anon5ccc24030208	typeref:typename:int
+index	include/types.h	/^	int index;$/;"	m	struct:__anon3fec03a30408	typeref:typename:int
+init	src/ship.c	/^init()$/;"	f	typeref:typename:void
+initial_sector	src/game.c	/^static sector_t *initial_sector;$/;"	v	typeref:typename:sector_t *	file:
+install	Makefile	/^install:$/;"	t
+item_count	include/menu.h	/^	size_t item_count;$/;"	m	struct:__anon5ccc24030208	typeref:typename:size_t
+items	include/menu.h	/^	ITEM *items;$/;"	m	struct:__anon5ccc24030208	typeref:typename:ITEM *
+left	include/state.h	/^	void (*left)();$/;"	m	struct:__anone6408a4f0108	typeref:typename:void (*)()
+location_t	include/types.h	/^} location_t;$/;"	t	typeref:struct:__anon3fec03a30408
+locations	include/types.h	/^	location_t locations[LOCATION_COUNT];$/;"	m	struct:__anon3fec03a30508	typeref:typename:location_t[]
+machine_deck	include/types.h	/^	bool machine_deck;$/;"	m	struct:__anon3fec03a30208	typeref:typename:bool
+machinewin	src/crew.c	/^static WINDOW *machinewin;$/;"	v	typeref:typename:WINDOW *	file:
+main	src/main.c	/^main(void)$/;"	f	typeref:typename:int
+main_manu	src/main.c	/^char *main_manu[] = {$/;"	v	typeref:typename:char * []
+mainwindow	src/main.c	/^WINDOW *mainwindow;$/;"	v	typeref:typename:WINDOW *
+map	src/map.c	/^map()$/;"	f	typeref:typename:void
+mapwin	src/map.c	/^static WINDOW *mapwin;$/;"	v	typeref:typename:WINDOW *	file:
+max_x	src/game.c	/^static int max_x, max_y;$/;"	v	typeref:typename:int	file:
+max_y	src/game.c	/^static int max_x, max_y;$/;"	v	typeref:typename:int	file:
+maxenergy	include/types.h	/^	uint8_t maxenergy;$/;"	m	struct:__anon3fec03a30308	typeref:typename:uint8_t
+menu	src/crew.c	/^static MENU *menu;$/;"	v	typeref:typename:MENU *	file:
+menu_driver	src/menu.c	/^menu_driver(MENU *m, MENU_ACTION action)$/;"	f	typeref:typename:ITEM *
+name	include/menu.h	/^	char *name;$/;"	m	struct:__anon5ccc24030108	typeref:typename:char *
+overview	src/crew.c	/^static WINDOW *overview;$/;"	v	typeref:typename:WINDOW *	file:
+phaser_deck	include/types.h	/^	bool phaser_deck;$/;"	m	struct:__anon3fec03a30208	typeref:typename:bool
+phasers	include/types.h	/^	uint16_t phasers;$/;"	m	struct:__anon3fec03a30108	typeref:typename:uint16_t
+phaserwin	src/crew.c	/^static WINDOW *phaserwin;$/;"	v	typeref:typename:WINDOW *	file:
+phaserwin	src/ship.c	/^static WINDOW *phaserwin;$/;"	v	typeref:typename:WINDOW *	file:
+player	include/types.h	/^	ship_t *player;$/;"	m	struct:__anon3fec03a30708	typeref:typename:ship_t *
+pos	src/map.c	/^static int pos;$/;"	v	typeref:typename:int	file:
+post_menu	src/menu.c	/^post_menu(MENU *m, WINDOW *w, int x, int y)$/;"	f	typeref:typename:void
+print_control_bar	src/ship.c	/^print_control_bar(WINDOW *w, int value)$/;"	f	typeref:typename:void
+print_energy	src/state/common.c	/^print_energy(WINDOW *w, int y, int x, int value)$/;"	f	typeref:typename:void
+print_health	src/state/common.c	/^print_health(WINDOW *w)$/;"	f	typeref:typename:void
+print_status	src/state/common.c	/^print_status(WINDOW *w, int y, int x, char *name, bool status)$/;"	f	typeref:typename:void
+ptr	include/menu.h	/^	void *ptr;$/;"	m	struct:__anon5ccc24030108	typeref:typename:void *
+right	include/state.h	/^	void (*right)();$/;"	m	struct:__anone6408a4f0108	typeref:typename:void (*)()
+run	Makefile	/^run:$/;"	t
+screenwin	src/ship.c	/^static WINDOW *screenwin;$/;"	v	typeref:typename:WINDOW *	file:
+sector_t	include/types.h	/^} sector_t;$/;"	t	typeref:struct:__anon3fec03a30508
+shield	include/types.h	/^	uint16_t shield;$/;"	m	struct:__anon3fec03a30108	typeref:typename:uint16_t
+shieldwin	src/ship.c	/^static WINDOW *shieldwin;$/;"	v	typeref:typename:WINDOW *	file:
+ship_t	include/types.h	/^} ship_t;$/;"	t	typeref:struct:__anon3fec03a30308
+show_gui	src/ship.c	/^show_gui()$/;"	f	typeref:typename:void
+start_game	src/game.c	/^start_game()$/;"	f	typeref:typename:void
+state	src/game.c	/^gamestate_t *state;$/;"	v	typeref:typename:gamestate_t *
+state_attack	src/state/attack.c	/^state_attack(WINDOW *w)$/;"	f	typeref:typename:statewindow *
+state_peaceful	src/state/peace.c	/^state_peaceful(WINDOW *w)$/;"	f	typeref:typename:statewindow *
+state_trade	src/state/trade.c	/^state_trade(WINDOW *w)$/;"	f	typeref:typename:statewindow *
+statewin	src/state/peace.c	/^static statewindow *statewin;$/;"	v	typeref:typename:statewindow *	file:
+statewin_bindings	src/ship.c	/^static statewindow *statewin_bindings;$/;"	v	typeref:typename:statewindow *	file:
+statewindow	include/state.h	/^} statewindow;$/;"	t	typeref:struct:__anone6408a4f0108
+status	include/types.h	/^	status_t *status;$/;"	m	struct:__anon3fec03a30308	typeref:typename:status_t *
+status_t	include/types.h	/^} status_t;$/;"	t	typeref:struct:__anon3fec03a30208
+statuswin	src/ship.c	/^static WINDOW *statuswin;$/;"	v	typeref:typename:WINDOW *	file:
+text	src/ship.c	/^static WINDOW *text;$/;"	v	typeref:typename:WINDOW *	file:
+up	include/state.h	/^	void (*up)();$/;"	m	struct:__anone6408a4f0108	typeref:typename:void (*)()
+update	Makefile	/^update: clean all $/;"	t
+visited	include/types.h	/^	bool visited;$/;"	m	struct:__anon3fec03a30408	typeref:typename:bool
+w	include/menu.h	/^	WINDOW *w;$/;"	m	struct:__anon5ccc24030208	typeref:typename:WINDOW *
+win	src/state/attack.c	/^static statewindow *win;$/;"	v	typeref:typename:statewindow *	file:
+win	src/state/trade.c	/^static statewindow *win;$/;"	v	typeref:typename:statewindow *	file:
+window	src/state/peace.c	/^static WINDOW *window;$/;"	v	typeref:typename:WINDOW *	file:
+write_to_screen	src/ship.c	/^write_to_screen(char *s, MESSAGE m)$/;"	f	typeref:typename:void
+x	include/menu.h	/^	uint32_t x;$/;"	m	struct:__anon5ccc24030208	typeref:typename:uint32_t
+x	include/types.h	/^	int x, y;$/;"	m	struct:__anon3fec03a30408	typeref:typename:int
+y	include/menu.h	/^	uint32_t y;$/;"	m	struct:__anon5ccc24030208	typeref:typename:uint32_t
+y	include/types.h	/^	int x, y;$/;"	m	struct:__anon3fec03a30408	typeref:typename:int
