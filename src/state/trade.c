@@ -1,9 +1,13 @@
 #include "state.h"
 
-static statewindow *win;
+void
+handle_trade(int key)
+{
 
-statewindow *
+}
+
+void
 state_trade(WINDOW *w)
 {
-	return win;
+	
 }

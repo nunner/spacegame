@@ -1,9 +1,23 @@
+#include "spacegame.h"
 #include "state.h"
 
-static statewindow *win;
+#include <string.h>
 
-statewindow *
+int target;
+
+void 
+handle_attack(int key)
+{
+
+}
+
+
+void
 state_attack(WINDOW *w)
 {
-	return win;
+	wcolor_set(w, C_RED, 0);
+	mvwprintw(w, 0, (CONTROL_WIDTH-strlen("Attack"))/2, "Attack");
+	wcolor_set(w, C_DEFAULT, 0);
+
+	wrefresh(w);
 }

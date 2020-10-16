@@ -8,10 +8,19 @@
 
 #define WIDTH INIT_COLS/4
 
+enum {
+	PHASER,
+	BOOSTER,
+};
+
 extern WINDOW *mainwindow;
 extern gamestate_t *state;
 
 extern location_t *current_destination;
+
+void (*functions[])() = {
+	[BOOSTER] = switch_location,
+};
 
 static WINDOW *crewwin;
 
@@ -35,13 +44,13 @@ create_crewwindow(WINDOW *w, char *name, bool property, int energy)
 void
 draw_machine()
 {
-	create_crewwindow(machinewin, "Machine", state->player->status->machine_deck, state->player->controls->shield);
+	create_crewwindow(machinewin, "Machine", state->player->status.machine_deck, state->player->controls.shield);
 }
 
 void
 draw_phaser()
 {
-	create_crewwindow(phaserwin, "Phaser", state->player->status->phaser_deck, state->player->controls->phasers);
+	create_crewwindow(phaserwin, "Phaser", state->player->status.phaser_deck, state->player->controls.phasers);
 
 	change_state(menu, PHASER, false);
 }
@@ -49,9 +58,9 @@ draw_phaser()
 void
 draw_engine()
 {
-	create_crewwindow(enginewin, "Engine", state->player->status->engine_deck, state->player->controls->booster);
+	create_crewwindow(enginewin, "Engine", state->player->status.engine_deck, state->player->controls.booster);
 
-	change_state(menu, BOOSTERS, false);
+	change_state(menu, BOOSTER, false);
 
 	if(current_destination != 0) {
 		int distance = abs(state->current_location->index - current_destination->index);
@@ -61,13 +70,14 @@ draw_engine()
 		mvwprintw(enginewin, 8, 2, "[Destination set]");
 		mvwprintw(enginewin, 10, 2, "Distance: %d", distance);
 
-		if(state->player->controls->booster >= distance) {
+		if(state->player->controls.booster >= distance) {
 			wcolor_set(enginewin, C_GREEN, 0);
 			mvwprintw(enginewin, 12, 2, "Sufficient energy supplied");
-			change_state(menu, BOOSTERS, true);
+			change_state(menu, BOOSTER, true);
 		} else {
 			wcolor_set(enginewin, C_RED, 0);
 			mvwprintw(enginewin, 12, 2, "Insufficient energy supplied");
+			change_state(menu, BOOSTER, false);
 		}
 
 		wcolor_set(enginewin, C_DEFAULT, 0);
@@ -88,15 +98,15 @@ crew()
 	keypad(crewwin, true);
 
 	char *options[] = {
-		"Fire phasers", PHASER,
-		"Activate boosters", BOOSTERS
+		[PHASER] = "Fire phasers", 		
+		[BOOSTER] = "Activate boosters",
 	};
 
-	int len = sizeof(options)/sizeof(options[0])/2;
+	int len = 2;
 	ITEM *items = malloc(len * sizeof(ITEM) );
 
-	for(size_t i = 0; i < 2*len; i += 2) {
-		items[i/2] = create_item(options[i], options[i + 1], true);	
+	for(size_t i = 0; i < len; i++) {
+		items[i] = create_item(options[i], i, true);	
 	}
 	
 	menu = create_menu(items, len);
@@ -117,9 +127,11 @@ crew()
 				menu_driver(menu, MENU_DOWN);
 				break;
 			// Return
-			case 10:
-				menu_driver(menu, MENU_SELECT);
+			case 10: {
+				ITEM *funct = menu_driver(menu, MENU_SELECT);
+				functions[funct->val]();
 				goto end;
+			}
 			// Escape
 			case ' ':
 				goto end;
@@ -128,6 +140,5 @@ crew()
 	}
 
 end:
-	delwin(crewwin);
 	return;
 }

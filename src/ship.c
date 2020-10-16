@@ -3,11 +3,8 @@
 
 #include <string.h>
 
-
 extern WINDOW *mainwindow;
 extern gamestate_t *state;
-
-static statewindow *statewin_bindings;
 
 static WINDOW *guiwin;
 
@@ -49,26 +46,26 @@ draw_controls()
 	mvwprintw(controlwin, 4, 2, "1");
 	mvwprintw(controlwin, 4, CONTROL_WIDTH-3, "2");
 
-	print_control_bar(shieldwin, state->player->controls->shield);
+	print_control_bar(shieldwin, state->player->controls.shield);
 
 	// Controls for phaser
 	mvwprintw(controlwin, 8, (CONTROL_WIDTH-strlen("Phasers"))/2, "Phasers");
 	mvwprintw(controlwin, 9, 2, "3");
 	mvwprintw(controlwin, 9, CONTROL_WIDTH-3, "4");
 
-	print_control_bar(phaserwin, state->player->controls->phasers);
+	print_control_bar(phaserwin, state->player->controls.phasers);
 
 	// Controls for boosters
 	mvwprintw(controlwin, 13, (CONTROL_WIDTH-strlen("Boosters"))/2, "Boosters");
 	mvwprintw(controlwin, 14, 2, "5");
 	mvwprintw(controlwin, 14, CONTROL_WIDTH-3, "6");
 
-	print_control_bar(boosterwin, state->player->controls->booster);
+	print_control_bar(boosterwin, state->player->controls.booster);
 
 	// Print status stuff
-	print_status(controlwin, 20, 3, "Machine deck", state->player->status->machine_deck);
-	print_status(controlwin, 22, 3, "Phaser deck", state->player->status->phaser_deck);
-	print_status(controlwin, 24, 3, "Engine deck", state->player->status->engine_deck);
+	print_status(controlwin, 20, 3, "Machine deck", state->player->status.machine_deck);
+	print_status(controlwin, 22, 3, "Phaser deck", state->player->status.phaser_deck);
+	print_status(controlwin, 24, 3, "Engine deck", state->player->status.engine_deck);
 
 	wrefresh(controlwin);
 }
@@ -83,17 +80,9 @@ draw_screen()
 void
 draw_status()
 {
-	switch(state->current_state) {
-		case PEACE:
-			statewin_bindings = state_peaceful(statuswin);
-			break;
-		case TRADE:
-			statewin_bindings = state_trade(statuswin);
-			break;
-		case ATTACK:
-			statewin_bindings = state_attack(statuswin);
-			break;
-	}
+	check_state();
+
+	state->current_state.draw(statuswin);
 }
 
 void
@@ -118,23 +107,23 @@ write_to_screen(char *s, MESSAGE m)
 	switch(m)
 	{
 		default:
-		case SYSTEM:
+		case M_SYSTEM:
 			wcolor_set(text, C_GREEN, 0);
 			prefix = "[SHIP COMPUTER]";
 			break;
-		case STATUS:
+		case M_STATUS:
 			wcolor_set(text, COLOR_BLUE, 0);
 			prefix = "[STATUS]";
 			break;
-		case TRADER:
+		case M_TRADER:
 			wcolor_set(text, COLOR_CYAN, 0);
 			prefix = "[TRADER]";
 			break;
-		case ATTACKER:
+		case M_ATTACKER:
 			wcolor_set(text, C_RED, 0);
 			prefix = "[ATTACK]";
 			break;
-		case UNKNOWN:
+		case M_UNKNOWN:
 			wcolor_set(text, C_YELLOW, 0);
 			prefix = "[UNKNOWN SHIP]";
 			break;
@@ -183,44 +172,49 @@ show_gui()
 				init();
 				break;
 			case '1':
-				if(state->player->controls->shield > 0) {
-					state->player->controls->shield--;
+				if(state->player->controls.shield > 0) {
+					state->player->controls.shield--;
 					state->player->energy--;
 				}
 				break;
 			case '2':
-				if(state->player->controls->shield < 15 && state->player->energy < state->player->maxenergy) {
-					state->player->controls->shield++;
+				if(state->player->controls.shield < 15 && state->player->energy < state->player->maxenergy) {
+					state->player->controls.shield++;
 					state->player->energy++;
 				}
 				break;
 			case '3':
-				if(state->player->controls->phasers > 0) {
-					state->player->controls->phasers--;
+				if(state->player->controls.phasers > 0) {
+					state->player->controls.phasers--;
 					state->player->energy--;
 				}
 				break;
 			case '4':
-				if(state->player->controls->phasers < 15 && state->player->energy < state->player->maxenergy) {
-					state->player->controls->phasers++;
+				if(state->player->controls.phasers < 15 && state->player->energy < state->player->maxenergy) {
+					state->player->controls.phasers++;
 					state->player->energy++;
 				}
 				break;
 			case '5':
-				if(state->player->controls->booster > 0) {
-					state->player->controls->booster--;
+				if(state->player->controls.booster > 0) {
+					state->player->controls.booster--;
 					state->player->energy--;
 				}
 				break;
 			case '6':
-				if(state->player->controls->booster < 15 && state->player->energy < state->player->maxenergy) {
-					state->player->controls->booster++;
+				if(state->player->controls.booster < 15 && state->player->energy < state->player->maxenergy) {
+					state->player->controls.booster++;
 					state->player->energy++;
 				}
 				break;
 		}
+
+		state->current_state.handle(key);
 	}
 
+	// to get rid of compiler warnings
+	goto end;
+end:
 	delwin(shieldwin);
 	delwin(phaserwin);
 	delwin(boosterwin);

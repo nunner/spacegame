@@ -4,22 +4,8 @@
 
 #define CONTROL_WIDTH 40
 
-typedef struct {
-	void (*left)();
-	void (*right)();
-	void (*up)();
-	void (*down)();
-	void (*enter)();
-} statewindow;
-
-statewindow *
-state_peaceful(WINDOW *w);
-
-statewindow *
-state_trade(WINDOW *w);
-
-statewindow *
-state_attack(WINDOW *w);
+void
+check_state();
 
 void
 print_health(WINDOW *w);

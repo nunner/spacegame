@@ -5,8 +5,8 @@
 
 typedef struct {
 	char *name;
-	char *code;
 	void *ptr;
+	int val;
 	bool enabled;
 } ITEM;
 
@@ -29,7 +29,7 @@ MENU *
 create_menu(ITEM *items, size_t count);
 
 ITEM
-create_item(char *name, char *code, bool enabled);
+create_item(char *name, int val, bool enabled);
 
 void
 post_menu(MENU *m, WINDOW *w, int x, int y);
@@ -38,4 +38,4 @@ ITEM *
 menu_driver(MENU *m, MENU_ACTION action);
 
 void
-change_state(MENU *m, char *code, bool value);
+change_state(MENU *m, int val, bool value);

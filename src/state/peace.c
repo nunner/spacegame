@@ -3,21 +3,20 @@
 
 #include <string.h>
 
-extern gamestate_t *state;
+void 
+handle_peaceful(int key)
+{
 
-static statewindow *statewin;
-static WINDOW *window;
+}
 
-statewindow *
+
+void
 state_peaceful(WINDOW *w)
 {
-	window = w;
+	mvwprintw(w, 0, (CONTROL_WIDTH-strlen("Information"))/2, "Information");
 
-	mvwprintw(window, 0, (CONTROL_WIDTH-strlen("Information"))/2, "Information");
-
-	print_health(window);
+	print_health(w);
 	mvwprintw(w, 3, 2, "Crew: \t\t%d", state->player->crew);
 
-	wrefresh(window);
-	return statewin;
+	wrefresh(w);
 }

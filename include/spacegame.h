@@ -25,8 +25,15 @@
 #include <ncurses.h>
 #include "types.h"
 
+#ifndef MAIN
+	extern gamestate_t *state;
+#endif
+
 void
 start_game();
+
+void
+switch_location();
 
 void
 map();

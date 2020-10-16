@@ -1,3 +1,4 @@
+#define MAIN
 #include "spacegame.h"
 #include "types.h"
 
@@ -34,7 +35,7 @@ start_game()
 	state->current_location = &state->current_sector->locations[0];
 	state->current_location->visited = true;
 
-	state->current_state = PEACE;
+	state->current_state.val = PEACE;
 
 	show_gui();
 }
@@ -43,21 +44,19 @@ ship_t *
 create_ship()
 {
 	ship_t *ship = malloc(sizeof(ship_t));
-	ship->controls = malloc(sizeof(controls_t));
-	ship->status = malloc(sizeof(status_t));
 
 	ship->health = 100;
 	ship->energy = 0;
 	ship->maxenergy = 45;
 	ship->crew = 60;
 
-	ship->controls->shield = 0;
-	ship->controls->phasers = 0;
-	ship->controls->booster = 0;
+	ship->controls.shield = 0;
+	ship->controls.phasers = 0;
+	ship->controls.booster = 0;
 
-	ship->status->machine_deck = true;
-	ship->status->phaser_deck = true;
-	ship->status->engine_deck = true;
+	ship->status.machine_deck = true;
+	ship->status.phaser_deck = true;
+	ship->status.engine_deck = true;
 
 	return ship;
 }

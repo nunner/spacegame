@@ -1,7 +1,32 @@
 #include "spacegame.h"
 #include "state.h"
 
-extern gamestate_t *state;
+extern void state_attack(WINDOW *w);
+extern void state_peaceful(WINDOW *w);
+extern void state_trade(WINDOW *w);
+
+extern void handle_attack(int key);
+extern void handle_peaceful(int key);
+extern void handle_trade(int key);
+
+void
+check_state() 
+{
+	switch(state->current_state.val) {
+		case ATTACK:
+			state->current_state.draw = state_attack;
+			state->current_state.handle = handle_attack;
+			break;
+		case PEACE:
+			state->current_state.draw = state_peaceful;
+			state->current_state.handle = handle_peaceful;
+			break;
+		case TRADE:
+			state->current_state.draw = state_trade;
+			state->current_state.handle = handle_trade;
+			break;
+	}
+}
 
 inline void
 print_health(WINDOW *w)
